@@ -11,7 +11,7 @@ public interface PrimaryAccount {
 
 
 
-//create a menu driven application out of this where you give choices to the user like:
+//create a a menu driven application out of this where you give choices to the user like:
 //Select 1 to add an account.
 //select 2 for deposit .
 //select 3 for withdraw
