@@ -1,4 +1,21 @@
+/*
+ * Create a class name SAVINACCOUNT with attributes ACCOUNTNUMBER, NAME, ROI, AND AMOUNT 
+ * create a method calculate inside this class and return the total amount after one year.
+ *  
+ * 
+ */
+
+/*
+ * OOPs concepts
+ * 
+ * Encapsulation: Data Binding : example-class
+ * Inheritance: one class in to others main class subclass (relationship)
+ * Polymorphism: compile time, run time
+ * Abstraction: abstract class or interface
+ */
+
 package com.training.bank;
+import java.util.ArrayList;
 import java.util.Scanner;
 class BankAccount { // protected // private // default
 	
@@ -8,7 +25,9 @@ class BankAccount { // protected // private // default
 		int age = 21; // Local variable
 		
 	}
-
+     
+    private static ArrayList<SavingAccount> accounts = new ArrayList<>();
+    private static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		
@@ -106,24 +125,138 @@ class BankAccount { // protected // private // default
 //	   System.out.println(i);
 	   
 //	SavingAccount account1=new SavingAccount(123, "Anwaar", 1000,5,200);
+        
+        
+
+
+
+                while (true) {  // استمرار عرض القائمة
+                    System.out.println("Select an option:");
+                    System.out.println("1. Add an Account");
+                    System.out.println("2. Deposit Money");
+                    System.out.println("3. Withdraw Money");
+                    System.out.println("4. Check Balance");
+                    System.out.println("5. Exit");
+
+                    int choice = sc.nextInt();  // قراءة الاختيار
+                    sc.nextLine();  // استهلاك السطر بعد الإدخال
+
+                    switch (choice) {
+                        case 1:
+                            addAccount();  // إضافة حساب جديد
+                            break;
+                        case 2:
+                            depositMoney();  // إيداع الأموال
+                            break;
+                        case 3:
+                            withdrawMoney();  // سحب الأموال
+                            break;
+                        case 4:
+                            checkBalance();  // عرض الرصيد
+                            break;
+                        case 5:
+                            System.out.println("Exiting the application...");
+                            System.exit(0);  // الخروج من البرنامج
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please try again.");  // خيار غير صحيح
+                    }
+                }
+            }
+
+            // إضافة حساب جديد
+            public static void addAccount() {
+                System.out.println("Enter Account Number:");
+                int accountNumber = sc.nextInt();
+                sc.nextLine();  // استهلاك السطر المتبقي
+                System.out.println("Enter Account Holder Name:");
+                String name = sc.nextLine();
+                System.out.println("Enter Rate of Interest (ROI):");
+                double roi = sc.nextDouble();
+                System.out.println("Enter Amount:");
+                double amount = sc.nextDouble();
+                System.out.println("Enter Minimum Balance:");
+                double minBalance = sc.nextDouble();
+
+                SavingAccount newAccount = new SavingAccount(accountNumber, name, roi, amount, minBalance);
+                accounts.add(newAccount);
+                System.out.println("Account created successfully!");
+            }
+
+            // إيداع الأموال في الحساب
+            public static void depositMoney() {
+                System.out.println("Enter Account Number to Deposit:");
+                int accountNumber = sc.nextInt();
+                System.out.println("Enter Amount to Deposit:");
+                double depositAmount = sc.nextDouble();
+
+                boolean accountFound = false;
+                for (SavingAccount account : accounts) {
+                    if (account.getAccountNumber() == accountNumber) {
+                        account.setAmount(account.getAmount() + depositAmount);
+                        System.out.println("Deposited " + depositAmount + " successfully!");
+                        accountFound = true;
+                        break;
+                    }
+                }
+
+                if (!accountFound) {
+                    System.out.println("Account not found.");
+                }
+            }
+
+            // سحب الأموال من الحساب
+            public static void withdrawMoney() {
+                System.out.println("Enter Account Number to Withdraw from:");
+                int accountNumber = sc.nextInt();
+                System.out.println("Enter Amount to Withdraw:");
+                double withdrawAmount = sc.nextDouble();
+
+                boolean accountFound = false; // متغير للتأكد من وجود الحساب
+                for (SavingAccount account : accounts) { // التحقق من وجود الحساب بناءً على رقم الحساب
+                    if (account.getAccountNumber() == accountNumber) {
+                        accountFound = true; // إذا تم العثور على الحساب
+                        if (account.getAmount() - withdrawAmount >= account.getMinBalance()) { // التحقق من أن الرصيد بعد السحب لا يقل عن الحد الأدنى
+                            account.setAmount(account.getAmount() - withdrawAmount); // تعديل الرصيد
+                            System.out.println("Withdrawn " + withdrawAmount + " successfully! New balance: " + account.getAmount());
+                        } else { // إذا كان الرصيد بعد السحب سيقل عن الحد الأدنى
+                            System.out.println("Error: Insufficient funds to maintain minimum balance.");
+                        }
+                        break; // الخروج من الحلقة عند العثور على الحساب
+                    }
+                }
+
+                if (!accountFound) { // إذا لم يتم العثور على الحساب
+                    System.out.println("Account not found!");
+                }
+
+            }
+
+            // عرض الرصيد في الحساب
+            public static void checkBalance() {
+                System.out.println("Enter Account Number to Check Balance:");
+                int accountNumber = sc.nextInt();
+
+                boolean accountFound = false;
+                for (SavingAccount account : accounts) {
+                    if (account.getAccountNumber() == accountNumber) {
+                        System.out.println("Account Holder: " + account.getAccountHolderName());
+                        System.out.println("Balance: " + account.getAmount());
+                        accountFound = true;
+                        break;
+                    }
+                }
+
+                if (!accountFound) {
+                    System.out.println("Account not found.");
+                }
+            }
+        
+
   
 	}
 
-}
 
-/*
- * Create a class name SAVINACCOUNT with attributes ACCOUNTNUMBER, NAME, ROI, AND AMOUNT 
- * create a method calculate inside this class and return the total amount after one year.
- *  
- * 
- */
 
-/*
- * OOPs concepts
- * 
- * Encapsulation: Data Binding : example-class
- * Inheritance: one class in to others main class subclass (relationship)
- * Polymorphism: compile time, run time
- * Abstraction: abstract class or interface
- */
+
 
