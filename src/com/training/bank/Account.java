@@ -1,12 +1,14 @@
 package com.training.bank;
 
 public abstract class Account {
+	
 	private int accountNumber;
 	private String accountHolderName;
-	private double amount;
-	
-	public Account(int accountNumber, String accountHolderName, double roi, double amount) {
-		super();
+    private double amount;
+    
+       
+    public Account(int accountNumber, String accountHolderName, double amount) {
+		
 		this.accountNumber = accountNumber;
 		this.accountHolderName = accountHolderName;
 		this.amount = amount;
@@ -37,14 +39,9 @@ public abstract class Account {
 	}
 	
 	public String display() {
-		return "Account number:" this.accountNumber + "Amount:" + this.amount;
+		return "Account number: "+this.accountNumber+ " Amount: "+this.amount;
 	}
-
-	//abstraction
+	
 	public abstract double calculateTotalAmount();
-	
-	
-	}
-	
-	
 
+}
