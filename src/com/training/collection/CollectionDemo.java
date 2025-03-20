@@ -1,8 +1,11 @@
 package com.training.collection;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 
@@ -58,6 +61,19 @@ public class CollectionDemo {
 
 		for(Employee emp: empSet) {
 			System.out.println(emp);
+		}
+		
+		
+		Map<Integer ,String> empMap = new HashMap<>();
+		empMap.put(101, "Mohamed");
+		empMap.put(102, "Suleiman");
+		empMap.put(103, "FarH");
+		empMap.put(101, "Noorie");
+		//System.out.println(empMap.get(101));
+		//or do the below:
+		for(Entry<Integer, String> empEntry: empMap.entrySet()) {
+			System.out.println(empEntry.getKey()+ ":" + empEntry.getValue());
+
 		}
 
 	}
