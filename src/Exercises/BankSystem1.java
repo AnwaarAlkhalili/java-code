@@ -1,3 +1,19 @@
+/*
+ * Write a Java program to manage bank accounts using exceptions and an ArrayList. 
+ * The program should include the following operations:
+ * 1. Deposit an amount into the account.
+ * 2. Withdraw an amount from the account.
+ * 3.Display account information 
+ * (such as account number, account holder's name, and balance).
+ * 4. Ensure there are sufficient funds for withdrawal.
+ * 5. Handle exceptions such as invalid input amount or attempting 
+ * to withdraw more than the available balance.
+ * 
+ * The program should be able to handle multiple bank accounts using an ArrayList 
+ * and a BankAccount1 class, with a user interface that allows data input through
+ *  the console (using Scanner).
+ * 
+ */
 package Exercises;
 import java.util.ArrayList;
 import java.util.Scanner;
