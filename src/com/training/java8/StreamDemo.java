@@ -22,8 +22,9 @@ import java.util.stream.Collectors;
 //                                      .sorted()                      // Sort the squared numbers
 //                                      .collect(Collectors.toList());
 //                                      //.forEach(x->System.out.println(x));//Collect the result into a list
+    	  
         
-        
+    	  public static void main(String[] args) {
         List<Department> deptList = new ArrayList<>();
         
         deptList.add(new Department(1, "Sales"));
@@ -31,24 +32,25 @@ import java.util.stream.Collectors;
         deptList.add(new Department(3, "Account"));
         deptList.add(new Department(4, "Marketing"));
         
-        empList.add(new Employee());
+       // empList.add(new Employee());
         //To list all department 
-        deptList.stream().map(dept -> dept.getDeptName()).forEach(d -> System.out.println(d));
-        System.out.println();
+       // deptList.stream().map(dept -> dept.getDeptName()).forEach(d -> System.out.println(d));
+        System.out.println("Welcome!");
         
         // 3) Find the employee with the highest salary
-        Optional<Employee> highestSalaryEmployee = employees.stream()
-            .collect(Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)));
-        highestSalaryEmployee.ifPresent(emp -> 
-            System.out.println("Employee with highest salary: " + emp.getName() + ", Salary: " + emp.getSalary()));
-        
-        // 4) Find the employee count in every department
-        map<String, Long> employeeCountByDepartment = employees.stream()
-            .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
-        employeeCountByDepartment.forEach((department, count) -> 
-            System.out.println("Department: " + department + ", Employee Count: " + count));
-        
-        
-
-            }
+//        Optional<Employee> highestSalaryEmployee = employees.stream()
+//            .collect(Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)));
+//        highestSalaryEmployee.ifPresent(emp -> 
+//            System.out.println("Employee with highest salary: " + emp.getName() + ", Salary: " + emp.getSalary()));
+//        
+//        // 4) Find the employee count in every department
+//        map<String, Long> employeeCountByDepartment = employees.stream()
+//            .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
+//        employeeCountByDepartment.forEach((department, count) -> 
+//            System.out.println("Department: " + department + ", Employee Count: " + count));
+//        
+//        
+//
+//            }
     }
+      }
