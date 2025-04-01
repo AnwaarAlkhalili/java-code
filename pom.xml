@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
+        
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -13,28 +14,67 @@
           <release>17</release>
         </configuration>
       </plugin>
-      <plugin>
-      		    
+      
+      <!--<plugin>
              <groupId>org.apache.maven.plugins</groupId>
              <artifactId>maven-jar-plugin</artifactId>
              <version>3.0.2</version>
-             <configuration>
-               <archive>
-                 <manifest>
-                 <mainClass>com.training.jdbc.JdbcDemo</mainClass>
-                 </manifest>
-               </archive>
-             </configuration>
-      </plugin>
-
-     </plugins>       
+               <configuration>
+                    <archive>
+                        <manifest>
+                           <mainClass>com.training.jdbc.JdbcDemo</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+      </plugin>-->
+      <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.training.jdbc.JdbcDemo</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+      
+    </plugins>
     <finalName>bank-training</finalName>
   </build>
   <dependencies>
-    <dependency>
+  	<dependency>
 	    <groupId>org.postgresql</groupId>
 	    <artifactId>postgresql</artifactId>
 	    <version>42.7.5</version>
 	</dependency>
+	<dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.7.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.7.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>3.9.0</version>
+     </dependency>
   </dependencies>
 </project>
