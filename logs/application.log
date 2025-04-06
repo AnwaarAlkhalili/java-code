@@ -1,0 +1,20 @@
+2025-03-26 09:30:49 [main] DEBUG o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3bbc39f8
+2025-03-26 09:30:49 [main] DEBUG o.s.b.f.xml.XmlBeanDefinitionReader - Loaded 6 bean definitions from class path resource [ApplicationContext.xml]
+2025-03-26 09:30:49 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2025-03-26 09:30:49 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2025-03-26 09:30:49 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2025-03-26 09:30:49 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2025-03-26 09:30:49 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'employee'
+2025-03-26 09:30:49 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'dept'
+2025-03-26 09:30:49 [main] INFO  com.training.spring.SpringTester - Spring container is created
+2025-03-26 09:30:49 [main] DEBUG com.training.spring.SpringTester - Employee Object Created
+2025-04-03 21:19:22 [main] DEBUG o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3bbc39f8
+2025-04-03 21:19:22 [main] DEBUG o.s.b.f.xml.XmlBeanDefinitionReader - Loaded 6 bean definitions from class path resource [ApplicationContext.xml]
+2025-04-03 21:19:22 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+2025-04-03 21:19:23 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+2025-04-03 21:19:23 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+2025-04-03 21:19:23 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+2025-04-03 21:19:23 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'employee'
+2025-04-03 21:19:23 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'dept'
+2025-04-03 21:19:23 [main] INFO  com.training.spring.SpringTester - Spring container is created
+2025-04-03 21:19:23 [main] DEBUG com.training.spring.SpringTester - Employee Object Created
