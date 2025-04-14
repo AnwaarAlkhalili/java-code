@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="Register" method="post">
+	<form action="<%=request.getContextPath()%>/Register" method="post">
     Username: <input type="text" name="username" /><br><br>
     Password: <input type="password" name="password" /><br><br>
     <input type="submit" value="Register" />

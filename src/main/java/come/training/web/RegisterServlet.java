@@ -10,63 +10,80 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- * Servlet implementation class RegisterServlet
- */
+import org.mindrot.jbcrypt.BCrypt; // Importing BCrypt
+
 @WebServlet("/Register")
 public class RegisterServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-    // إعداد الاتصال بقاعدة البيانات
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/userdb";
+    private static final long serialVersionUID = 1L;
+
+    // Database connection details
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "your_password";   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final String DB_PASSWORD = "pass123";   
+
     public RegisterServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        // Hashing the password using BCrypt
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
         try {
-            // تحميل Driver
+            // Load PostgreSQL driver
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
-            String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            // Check if the username already exists
+            String checkSql = "SELECT * FROM users1 WHERE username = ?";
+            stmt = conn.prepareStatement(checkSql);
             stmt.setString(1, username);
-            stmt.setString(2, password); // مستقبلاً الأفضل تشفيره
+            ResultSet rs = stmt.executeQuery();
 
-            int rows = stmt.executeUpdate();
-            if (rows > 0) {
-                out.println("<h2>Registration Successful!</h2>");
+            if (rs.next()) {
+                // If username exists, prompt user to choose another one
+                out.println("<h2>Username already exists. Please choose another one.</h2>");
+            } else {
+                // Insert the user with the hashed password
+                String sql = "INSERT INTO users1 (username, password) VALUES (?, ?)";
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, username);
+                stmt.setString(2, hashedPassword); // Storing the hashed password
+
+                int rows = stmt.executeUpdate();
+                if (rows > 0) {
+                    out.println("<h2>Registration Successful!</h2>");
+                    out.println("<a href='login.jsp'>Go to Login Page</a>");
+                } else {
+                    out.println("<h2>Registration failed. Please try again later.</h2>");
+                }
             }
 
             stmt.close();
             conn.close();
 
         } catch (Exception e) {
+            e.printStackTrace();
             out.println("<h2>Error: " + e.getMessage() + "</h2>");
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
